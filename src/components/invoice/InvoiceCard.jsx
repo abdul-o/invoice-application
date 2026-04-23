@@ -41,9 +41,11 @@ export default function InvoiceCard({ invoice, active }) {
       </p>
 
       {/* CLIENT */}
+
       <p className="text-sm text-gray-500">
-        {invoice.clientName}
-      </p>
+  {invoice.billTo?.clientName || "No Name"}
+</p>
+
 
       {/* TOTAL */}
       <p className="font-bold text-black dark:text-white md:text-right">

@@ -86,24 +86,72 @@ export default function InvoiceForm({ open, onClose, invoice }) {
     );
   }
 
-  function handleSubmit(status) {
-    const data = {
-      id:
-        invoice?.id ||
-        Math.random().toString(36).substring(2, 7).toUpperCase(),
-      ...form,
-      total: calculateGrandTotal(),
-      status,
-    };
+function calculateDueDate() {
+  if (!form.invoiceDate) return "";
 
-    if (invoice) {
-      updateInvoice(data);
-    } else {
-      addInvoice(data);
-    }
+  const date = new Date(form.invoiceDate);
+  date.setDate(date.getDate() + Number(form.paymentTerms));
 
-    onClose();
+  return date.toISOString().split("T")[0]; // format YYYY-MM-DD
+}
+
+
+
+
+
+
+function handleSubmit(status) {
+  const data = {
+    id:
+      invoice?.id ||
+      Math.random().toString(36).substring(2, 7).toUpperCase(),
+
+    ...form,
+
+    dueDate: calculateDueDate(), // ✅ ADD THIS
+    total: calculateGrandTotal(),
+    status,
+  };
+
+  if (invoice) {
+    updateInvoice(data);
+  } else {
+    addInvoice(data);
   }
+
+  onClose();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // function handleSubmit(status) {
+  //   const data = {
+  //     id:
+  //       invoice?.id ||
+  //       Math.random().toString(36).substring(2, 7).toUpperCase(),
+  //     ...form,
+  //     total: calculateGrandTotal(),
+  //     status,
+  //   };
+
+  //   if (invoice) {
+  //     updateInvoice(data);
+  //   } else {
+  //     addInvoice(data);
+  //   }
+
+  //   onClose();
+  // }
 
   return (
     <div className="fixed inset-0 z-50 flex">
