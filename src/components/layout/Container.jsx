@@ -8,7 +8,8 @@ export default function Container({ children }) {
       <Sidebar />
 
       {/* Main Content */}
-      <main className="flex-1 flex justify-center">
+
+      <main className="flex-1 flex justify-center p-4 md:p-10 max-w-5xl mx-auto mt-16 md:mt-0">
         <div className="w-full max-w-5xl p-6 md:p-10">
           {children}
         </div>

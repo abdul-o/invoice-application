@@ -1,3 +1,4 @@
+
 export default function StatusBadge({ status }) {
   const styles = {
     Paid: "bg-green-100 text-green-600",
@@ -6,8 +7,14 @@ export default function StatusBadge({ status }) {
   };
 
   return (
-    <span className={`px-3 py-1 rounded-full text-sm font-semibold ${styles[status]}`}>
-      ● {status}
+    <span
+      className={`
+        flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium
+        ${styles[status] || ""}
+      `}
+    >
+      <span className="text-lg">•</span>
+      {status}
     </span>
   );
 }

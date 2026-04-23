@@ -26,13 +26,21 @@ export default function Sidebar() {
   }
 
   return (
-    <aside className="hidden md:flex flex-col justify-between items-center w-24 h-screen bg-[#1E2139] py-6">
+    <aside
+      className="
+        fixed top-0 left-0 z-50
+        w-full h-16
+        flex flex-row justify-between items-center px-6
+        bg-[#1E2139]
 
+        md:static md:w-24 md:h-screen md:flex-col md:py-6
+      "
+    >
       {/* LOGO */}
-      <div className="w-12 h-12 bg-purple-500 rounded-xl"></div>
+      <div className="w-10 h-10 bg-gradient-to-tr from-purple-500 to-purple-300 rounded-xl"></div>
 
-      {/* BOTTOM */}
-      <div className="flex flex-col items-center gap-6">
+      {/* RIGHT SIDE (mobile) / BOTTOM (desktop) */}
+      <div className="flex items-center gap-6 md:flex-col">
 
         {/* THEME TOGGLE */}
         <button onClick={toggleTheme} className="text-white text-xl">
