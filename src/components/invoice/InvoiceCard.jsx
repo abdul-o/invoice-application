@@ -1,8 +1,12 @@
 import StatusBadge from "../ui/StatusBadge";
-
+import { useNavigate } from "react-router-dom";
 export default function InvoiceCard({ invoice, active }) {
+  const navigate = useNavigate();
   return (
-     <div className={`
+     <div onClick={() => {
+        navigate(`/invoice/${invoice.id}`);
+      }}
+      className={`
   bg-white dark:bg-[#1E2139]
   rounded-lg p-5 flex justify-between items-center
   border border-transparent

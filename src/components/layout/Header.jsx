@@ -2,8 +2,10 @@ import Button from "../ui/Button";
 import FilterDropdown from "../invoice/FilterDropdown";
 import { useState } from "react";
 
-export default function Header() {
+import InvoiceForm from "../invoice/InvoiceForm";
 
+export default function Header() {
+const [openForm, setOpenForm] = useState(false);
   const [selected, setSelected] = useState([]);
   return (
     <div className="flex items-center justify-between mb-10">
@@ -28,12 +30,14 @@ export default function Header() {
         </button> */}
 
         {/* New Invoice */}
-        <Button>
+        {/* <Button>
           + New
-        </Button>
+        </Button> */}
+
+        <Button onClick={() => setOpenForm(true)}>+ New</Button>
 
       </div>
-
+      <InvoiceForm open={openForm} onClose={() => setOpenForm(false)} />
     </div>
   );
 }
