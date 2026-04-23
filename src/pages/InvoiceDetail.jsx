@@ -1,15 +1,23 @@
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import Container from "../components/layout/Container";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+
 import InvoiceForm from "../components/invoice/InvoiceForm";
 import Modal from "../components/ui/Modal"
+import { useInvoices } from "../context/InvoiceContext";
 
 export default function InvoiceDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [openForm, setOpenForm] = useState(false);
   const [openModal, setOpenModal] = useState(false);
+  const { invoices, deleteInvoice } = useInvoices();
+
+  const invoice = invoices.find((inv) => inv.id === id);
+  if (!invoice) {
+    return <p className="text-center mt-10">Invoice not found</p>;
+  }
   return (
     <Container>
 
@@ -29,8 +37,7 @@ export default function InvoiceDetail() {
     hover:border-purple-500
     transition cursor-pointer
     relative z-10
-  "
-      >
+  ">
         <div className="flex items-center gap-4">
           <span className="text-gray-500">Status</span>
           <span className="bg-orange-100 text-orange-600 px-3 py-1 rounded-full">
@@ -109,12 +116,19 @@ export default function InvoiceDetail() {
         </div>
 
       </div>
-      <InvoiceForm open={openForm} onClose={() => setOpenForm(false)} />
+
+      <InvoiceForm
+        open={openForm}
+        onClose={() => setOpenForm(false)}
+        invoice={invoice}
+      />
+      {/* <InvoiceForm open={openForm} onClose={() => setOpenForm(false)} /> */}
       <Modal
         isOpen={openModal}
         onClose={() => setOpenModal(false)}
         onConfirm={() => {
-          alert("Invoice deleted");
+          deleteInvoice(id);
+          navigate("/");
           setOpenModal(false);
         }}
       />

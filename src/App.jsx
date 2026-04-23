@@ -11,17 +11,17 @@
 //   );
 // }
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import InvoiceDetail from "./pages/InvoiceDetail";
 
 export default function App() {
   return (
-    <BrowserRouter>
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/invoice/:id" element={<InvoiceDetail />} />
       </Routes>
-    </BrowserRouter>
+
   );
 }
