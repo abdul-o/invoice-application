@@ -30,6 +30,10 @@ export function InvoiceProvider({ children }) {
     setInvoices((prev) => prev.filter((inv) => inv.id !== id));
   }
 
+
+
+
+
   // ✅ MARK AS PAID
   function markAsPaid(id) {
     setInvoices((prev) =>
