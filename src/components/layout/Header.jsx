@@ -1,6 +1,10 @@
 import Button from "../ui/Button";
+import FilterDropdown from "../invoice/FilterDropdown";
+import { useState } from "react";
 
 export default function Header() {
+
+  const [selected, setSelected] = useState([]);
   return (
     <div className="flex items-center justify-between mb-10">
 
@@ -18,9 +22,10 @@ export default function Header() {
       <div className="flex items-center gap-4">
 
         {/* Filter */}
-        <button className="text-sm font-medium text-gray-700 dark:text-white">
+        <FilterDropdown selected={selected} setSelected={setSelected} />
+        {/* <button className="text-sm font-medium text-gray-700 dark:text-white">
           Filter ▼
-        </button>
+        </button> */}
 
         {/* New Invoice */}
         <Button>

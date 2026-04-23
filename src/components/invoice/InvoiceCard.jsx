@@ -1,9 +1,15 @@
 import StatusBadge from "../ui/StatusBadge";
 
-export default function InvoiceCard({ invoice }) {
+export default function InvoiceCard({ invoice, active }) {
   return (
-    <div className="bg-white dark:bg-[#1E2139] rounded-lg p-5 flex justify-between items-center shadow hover:scale-[1.01] transition cursor-pointer">
-
+     <div className={`
+  bg-white dark:bg-[#1E2139]
+  rounded-lg p-5 flex justify-between items-center
+  border border-transparent
+  hover:border-purple-500
+  transition
+  cursor-pointer ${active ? "border-purple-600":"border-transparent hover:border-purple-500"}
+  `}>
       {/* LEFT */}
       <div className="flex justify-between gap-4">
         <h3 className="font-bold text-black dark:text-white">
