@@ -47,8 +47,7 @@ export default function Header ({ filter, setFilter }) {
         >
           Filter ▼
         </button>
-        <span className='hidden md:inline'>Filter</span>
-        <span className='md:hidden'>Filter</span>
+
 
         {open && (
           <div className='absolute top-16 right-0 bg-white dark:bg-[#1E2139] shadow-lg rounded-lg p-4 w-40 z-50'>
@@ -85,32 +84,10 @@ export default function Header ({ filter, setFilter }) {
           + New
         </Button> */}
 
-        <Button onClick={() => setOpenForm(true)}>+ New</Button>
+        <Button onClick={() => setOpenForm(true)}> <button className="mx-2 w-6 h-6 rounded-full bg-[white] text-purple-500">+</button>  New Invoice</Button>
       </div>
       <InvoiceForm open={openForm} onClose={() => setOpenForm(false)} />
     </div>
   )
 }
 
-// export default function Header() {
-//   return (
-//     <div className="flex items-center justify-between mb-10">
-
-//       <div>
-//         <h1 className="text-2xl font-bold text-black">
-//           Invoices
-//         </h1>
-//         <p className="text-sm text-gray-500">
-//           No invoices
-//         </p>
-//       </div>
-
-//       <div>
-//         <button className="bg-blue-500 text-white px-4 py-2">
-//           Test Button
-//         </button>
-//       </div>
-
-//     </div>
-//   );
-// }
