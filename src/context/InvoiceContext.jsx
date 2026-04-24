@@ -1,46 +1,40 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from 'react'
 
-const InvoiceContext = createContext();
+const InvoiceContext = createContext()
 
-export function InvoiceProvider({ children }) {
+export function InvoiceProvider ({ children }) {
   const [invoices, setInvoices] = useState(() => {
-    const saved = localStorage.getItem("invoices");
-    return saved ? JSON.parse(saved) : [];
-  });
+    const saved = localStorage.getItem('invoices')
+    return saved ? JSON.parse(saved) : []
+  })
 
-  // 💾 SAVE TO LOCAL STORAGE
+  //  SAVE TO LOCAL STORAGE
   useEffect(() => {
-    localStorage.setItem("invoices", JSON.stringify(invoices));
-  }, [invoices]);
+    localStorage.setItem('invoices', JSON.stringify(invoices))
+  }, [invoices])
 
-  // ➕ ADD
-  function addInvoice(invoice) {
-    setInvoices((prev) => [...prev, invoice]);
+  //  ADD
+  function addInvoice (invoice) {
+    setInvoices(prev => [...prev, invoice])
   }
 
-  // ✏️ UPDATE
-  function updateInvoice(updated) {
-    setInvoices((prev) =>
-      prev.map((inv) => (inv.id === updated.id ? updated : inv))
-    );
+  //  UPDATE
+  function updateInvoice (updated) {
+    setInvoices(prev =>
+      prev.map(inv => (inv.id === updated.id ? updated : inv))
+    )
   }
 
-  // ❌ DELETE
-  function deleteInvoice(id) {
-    setInvoices((prev) => prev.filter((inv) => inv.id !== id));
+  //  DELETE
+  function deleteInvoice (id) {
+    setInvoices(prev => prev.filter(inv => inv.id !== id))
   }
 
-
-
-
-
-  // ✅ MARK AS PAID
-  function markAsPaid(id) {
-    setInvoices((prev) =>
-      prev.map((inv) =>
-        inv.id === id ? { ...inv, status: "Paid" } : inv
-      )
-    );
+  //  MARK AS PAID FUNCTION
+  function markAsPaid (id) {
+    setInvoices(prev =>
+      prev.map(inv => (inv.id === id ? { ...inv, status: 'Paid' } : inv))
+    )
   }
 
   return (
@@ -50,14 +44,14 @@ export function InvoiceProvider({ children }) {
         addInvoice,
         updateInvoice,
         deleteInvoice,
-        markAsPaid,
+        markAsPaid
       }}
     >
       {children}
     </InvoiceContext.Provider>
-  );
+  )
 }
 
-export function useInvoices() {
-  return useContext(InvoiceContext);
+export function useInvoices () {
+  return useContext(InvoiceContext)
 }

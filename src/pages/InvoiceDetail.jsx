@@ -12,10 +12,10 @@ export default function InvoiceDetail() {
   const [openForm, setOpenForm] = useState(false);
   const [openModal, setOpenModal] = useState(false);
 
-  // ✅ FIX: single hook call
+  // initiate hook
   const { invoices, deleteInvoice, markAsPaid } = useInvoices();
 
-  // ✅ get real invoice
+  // get real invoice
   const invoice = invoices.find((inv) => inv.id === id);
 
   if (!invoice) {
@@ -40,13 +40,12 @@ export default function InvoiceDetail() {
           <span className="text-gray-500">Status</span>
 
           <span
-            className={`px-3 py-1 rounded-full text-sm ${
-              invoice.status === "Paid"
+            className={`px-3 py-1 rounded-full text-sm ${invoice.status === "Paid"
                 ? "bg-green-100 text-green-600"
                 : invoice.status === "Draft"
-                ? "bg-gray-200 text-gray-600"
-                : "bg-orange-100 text-orange-600"
-            }`}
+                  ? "bg-gray-200 text-gray-600"
+                  : "bg-orange-100 text-orange-600"
+              }`}
           >
             ● {invoice.status}
           </span>

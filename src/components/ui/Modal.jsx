@@ -1,7 +1,4 @@
 import { useState } from "react";
-
-
-
 export default function Modal({ isOpen, onClose, onConfirm }) {
   if (!isOpen) return null;
 
@@ -20,7 +17,7 @@ export default function Modal({ isOpen, onClose, onConfirm }) {
             Cancel
           </button>
 
-          {/* 🔥 THIS MUST CALL onConfirm */}
+         {/* Call onconfirm */}
           <button
             onClick={onConfirm}
             className="px-4 py-2 bg-red-500 text-white rounded"
