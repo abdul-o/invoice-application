@@ -154,13 +154,13 @@ function handleSubmit(status) {
   // }
 
   return (
-    <div className="fixed inset-0 z-50 flex">
+    <div className="fixed inset-0 z-50 flex-row-reverse flex ml-24">
 
       {/* OVERLAY */}
       <div onClick={onClose} className="flex-1 bg-black/50" />
 
       {/* DRAWER */}
-      <div className="w-full max-w-xl bg-white dark:bg-[#141625] p-6 overflow-y-auto">
+      <div className="w-full max-w-xl dark:bg-[#141625] p-6 overflow-y-auto rounded-br-xl relative">
 
         <h2 className="text-xl font-bold mb-6">
           {invoice ? "Edit Invoice" : "New Invoice"}
